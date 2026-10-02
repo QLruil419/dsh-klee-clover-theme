@@ -4,6 +4,8 @@ A Genshin Impact fan theme for DeepSeek Harness, with a Mondstadt sunset, two di
 
 [中文文档](README.md) · [Downloads](https://github.com/QLruil419/dsh-klee-clover-theme/releases/latest) · [Asset notices](ASSET_NOTICE.md)
 
+**v1.1.0 supports official Desktop.** See [Desktop installation and updates](DESKTOP.md).
+
 ![Klee Clover light appearance](docs/preview-light.jpg)
 
 ## Features
@@ -27,7 +29,7 @@ Set-Location 'D:\Plugins\dsh-klee-clover-theme'
 powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1 -Profile web
 ```
 
-For the desktop app use `-Profile desktop`. If the bundled CLI is not on PATH, pass `-DshCommand` with its absolute path. Ensure the CLI and app use the same `DSH_HOME`; installing into a different home/profile will not affect your active app. The execution-policy flag only applies to the script process.
+For official Desktop, first initialize the app and fully quit from the tray/menu, then use `install.ps1 -Profile desktop -DesktopPath '<application directory>'` or explicitly provide the bundled launcher with `-DshCommand`. Desktop installs a `file:` package and dependencies using bundled pnpm, without system npm or an npm/npx fallback. Keep the same DSH_HOME as the app. The execution-policy flag only applies to the script process.
 
 Manual installation, also suitable for macOS/Linux:
 
@@ -52,7 +54,7 @@ Character horizontal position is relative to the main area to the right of the s
 
 ## Update / remove
 
-Close Harness, overwrite the same plugin directory with the new ZIP, run `npm install --omit=dev`, and restart. Git users can run `git pull --ff-only` first. Updates preserve the settings file stored outside the plugin directory.
+Close Harness and overwrite the same source directory. Web users run `npm install --omit=dev`; Desktop users **rerun the desktop installer** to refresh the installed file package, then reopen the app. Git users can run `git pull --ff-only` first. Settings remain outside the source directory. See DESKTOP.md for desktop uninstall commands.
 
 ```sh
 dsh plugin --profile web remove -w dsh-klee-clover-theme

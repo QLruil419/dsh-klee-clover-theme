@@ -17,3 +17,14 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: npm test
+      - name: Check PowerShell syntax and Desktop launcher guard
+        shell: pwsh
+        run: |
+          foreach ($file in @('install.ps1', 'uninstall.ps1', 'scripts/dsh-command.ps1')) {
+            $errors = $null; $tokens = $null
+            $null = [Management.Automation.Language.Parser]::ParseFile((Join-Path $PWD $file), [ref]$tokens, [ref]$errors)
+            if ($errors) { throw ($errors | Out-String) }
+          }
+          . ./scripts/dsh-command.ps1
+          try { Resolve-ThemeDshCommand desktop '' ''; throw 'Missing Desktop command was accepted' }
+          catch { if ($_.Exception.Message -notlike 'Desktop requires*') { throw } }

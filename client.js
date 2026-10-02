@@ -218,6 +218,7 @@ body[${SCOPE}] {
   --klee-mascot-size: 156px;
   --klee-mascot-opacity: .92;
   --klee-panel: color-mix(in srgb, var(--klee-ground) var(--klee-panel-fill), transparent);
+  --klee-chrome-top: 0px;
   --dsw-alias-bg-base: transparent;
   --dsw-specific-sidebar-fill: transparent;
   --dsw-alias-button-elevated-fill: var(--klee-panel);
@@ -541,6 +542,27 @@ body[${SCOPE}] .klee-settings-row {
 body[${SCOPE}] .klee-settings-header { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; margin-bottom: 16px; }
 @media (max-width: 620px) {
   body[${SCOPE}] .klee-settings-row { grid-template-columns: 1fr; gap: 8px; }
+}
+
+/* Desktop still uses the web client. Keep the native caption opaque without
+   letting AppFrame's caption fill hide the wallpaper behind the whole frame. */
+html[data-windows-titlebar] body[${SCOPE}] {
+  --dsw-specific-sidebar-fill: var(--klee-ground);
+  --klee-chrome-top: var(--dsh-windows-titlebar-height, 40px);
+}
+html[data-platform="darwin"] body[${SCOPE}] { --klee-chrome-top: 48px; }
+html[data-fullscreen] body[${SCOPE}] { --klee-chrome-top: 0px; }
+html[data-windows-titlebar] body[${SCOPE}] [style*="--dsh-windows-sidebar-width"] {
+  background: transparent;
+}
+body[${SCOPE}] div:has(> [data-slot="sidebar"]) {
+  background: transparent;
+}
+body[${SCOPE}] [data-slot="sidebar"] > div:first-child { background-color: transparent; }
+body[${SCOPE}] .klee-wallpaper-character { max-height: calc(100vh - var(--klee-chrome-top)); }
+body[${SCOPE}] .klee-clovers { top: var(--klee-chrome-top); }
+@media (max-width: 900px) {
+  body[${SCOPE}] .klee-wallpaper-character { max-height: min(65vh, calc(100vh - var(--klee-chrome-top))); }
 }
 `
     }

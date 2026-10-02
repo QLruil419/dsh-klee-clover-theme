@@ -1,4 +1,4 @@
-# Mount the Klee Clover host + client plugin in the web profile.
+# Mount the Klee Clover host + client plugin in Web or Desktop.
 - insert:
     - id: klee-clover-theme
       name: dsh-klee-clover-theme

@@ -4,6 +4,8 @@
 
 [English](README.en.md) · [下载安装包](https://github.com/QLruil419/dsh-klee-clover-theme/releases/latest) · [更新日志](CHANGELOG.md) · [素材来源与版权](ASSET_NOTICE.md)
 
+**v1.1.0 支持官方 Desktop。** 详见 [桌面安装与覆盖更新](DESKTOP.md)。
+
 蒙德的夕阳、可莉的红色外套、琪花星烛的童话书，以及一颗安静待在角落的蹦蹦炸弹。以朱红、奶油白和暖金统一界面，支持明暗外观与可调节的玻璃效果。
 
 基于 [Doro Paradise v1.4.0](https://github.com/QLruil419/dsh-doro-paradise-theme/tree/v1.4.0) 的插件架构重新制作。独立包名、接口、样式命名空间和设置文件，保留原作代码的 MIT 版权声明。
@@ -43,7 +45,7 @@
 
 ## Windows：ZIP 安装
 
-1. 从 [Release](https://github.com/QLruil419/dsh-klee-clover-theme/releases/latest) 下载 `dsh-klee-clover-theme-v1.0.3.zip`。
+1. 从 [Release](https://github.com/QLruil419/dsh-klee-clover-theme/releases/latest) 下载 `dsh-klee-clover-theme-v1.1.0.zip`。
 2. 解压到长期保留的目录，例如 `D:\Plugins`。ZIP 内有顶层文件夹 `dsh-klee-clover-theme`。
 3. 在 PowerShell 中执行以下命令。
 
@@ -58,10 +60,10 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1 -Profile web
 
 ```powershell
 Set-Location 'D:\Plugins\dsh-klee-clover-theme'
-powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1 -Profile desktop
+powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1 -Profile desktop -DesktopPath 'D:\deepseek_harness'
 ```
 
-上面的执行策略仅作用于这次脚本进程。也可以使用下一节的手动命令，不运行 PowerShell 安装脚本。
+桌面版先打开一次初始化 profile，再从托盘菜单完全退出。`-DesktopPath` 改为实际应用目录；桌面安装不需要系统 npm。执行策略仅作用于这次脚本进程。
 
 如果桌面版的 `dsh` 没加入 PATH，可传入安装目录内的命令文件，例如：
 
@@ -76,7 +78,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1 -Profile deskt
 4. 完全退出并重新启动 Harness。浏览器版可在页面按 `Ctrl + F5`。
 5. 打开设置 → **可莉 · 四叶草冒险**。调整参数，点击「保存设置」，应显示「已保存」。
 
-安装脚本检查每一步的退出码，只有成功才报告安装完成。插件以本地链接安装，之后请保留解压目录。
+安装脚本检查每一步的退出码。Web 采用本地链接；Desktop 使用内置 pnpm 安装 `file:` 包及依赖。Desktop 覆盖源码后需重新运行安装脚本，再重启。
 
 ## 手动安装 / macOS / Linux
 
@@ -87,7 +89,7 @@ npm install --omit=dev
 dsh plugin --profile web add -w .
 ```
 
-桌面版将 `web` 改为 `desktop`。尚无 `dsh` 命令的浏览器版环境可使用：
+桌面版请使用 [DESKTOP.md](DESKTOP.md) 的内置命令与 `file:` 包流程，不使用 npm 版 dsh 操作 desktop。浏览器版没有 `dsh` 命令时可使用：
 
 ```sh
 npx --yes @deepseek-ai/dsh@latest plugin --profile web add -w .
@@ -123,7 +125,7 @@ npx --yes @deepseek-ai/dsh@latest plugin --profile web add -w .
 
 ## 更新与卸载
 
-ZIP 用户：退出 Harness，将新版 ZIP 解压覆盖**同一个插件目录**，运行一次 `npm install --omit=dev`，再重启。数据文件在 DSH_HOME 中，不会被覆盖安装清空。
+ZIP 用户：退出 Harness，将新版 ZIP 解压覆盖**同一个插件目录**。Web 用户运行 `npm install --omit=dev`；Desktop 用户重新运行 `.\install.ps1 -Profile desktop -DesktopPath '<应用目录>'`，再重启。DSH_HOME 中的数据文件不会被覆盖安装清空。
 
 Git 用户：
 
@@ -136,7 +138,7 @@ npm install --omit=dev
 
 ```powershell
 .\uninstall.ps1 -Profile web
-# 桌面版：.\uninstall.ps1 -Profile desktop
+# 桌面版：.\uninstall.ps1 -Profile desktop -DesktopPath 'D:\deepseek_harness'
 ```
 
 或 `dsh plugin --profile web remove -w dsh-klee-clover-theme`。卸载保留配置文件，便于重装恢复；不希望保留时可手动删除该单个 JSON 文件。
