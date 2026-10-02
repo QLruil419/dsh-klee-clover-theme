@@ -1,0 +1,4 @@
+# Mount the Klee Clover host + client plugin in the web profile.
+- insert:
+    - id: klee-clover-theme
+      name: dsh-klee-clover-theme

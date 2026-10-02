@@ -1,0 +1,24 @@
+{
+  "retrievedOn": "2026-10-02",
+  "notice": "Third-party game artwork is not MIT-licensed. See ASSET_NOTICE.md.",
+  "assets": [
+    {
+      "file": "mondstadt.jpg",
+      "title": "Mondstadt sunset — official character introduction background",
+      "source": "https://uploadstatic-sea.mihoyo.com/contentweb/20200211/2020021114281985438.jpg",
+      "sha256": "ee7306b8dabe7df2636c6de164787ddb75fb71e7fa096d3453190d446f97d848"
+    },
+    {
+      "file": "klee-splash.png",
+      "title": "UI_Gacha_AvatarImg_Klee",
+      "source": "https://enka.network/ui/UI_Gacha_AvatarImg_Klee.png",
+      "sha256": "cc9b72b7b9e7ad567f9259bb586207dda8a0e3f9e5e05d546cef218b46cf13ed"
+    },
+    {
+      "file": "klee-blossoming-starlight.png",
+      "title": "UI_Costume_KleeCostumeWitch",
+      "source": "https://enka.network/ui/UI_Costume_KleeCostumeWitch.png",
+      "sha256": "ec99f0d3be16d23485969343b6a06865bf8667e48517ab73a6f8458b848cc3b0"
+    }
+  ]
+}

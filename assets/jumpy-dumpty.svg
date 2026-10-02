@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Jumpy Dumpty fan illustration">
+  <defs><linearGradient id="red" x2=".7" y2="1"><stop stop-color="#e77944"/><stop offset="1" stop-color="#a73425"/></linearGradient><linearGradient id="cream" x2="0" y2="1"><stop stop-color="#fff7d9"/><stop offset="1" stop-color="#eac78e"/></linearGradient></defs>
+  <path d="M77 88Q37 74 37 36q37 0 57 45M169 86q40-18 45-49-39-2-58 43" fill="url(#cream)" stroke="#6b422e" stroke-width="5"/>
+  <path d="M144 60q19-25 35-25" fill="none" stroke="#885336" stroke-width="8" stroke-linecap="round"/>
+  <path d="m185 17 4 13 14-2-10 10 8 12-14-4-9 11 1-15-13-6 14-3Z" fill="#edb44f"/>
+  <ellipse cx="127" cy="160" rx="88" ry="80" fill="url(#red)" stroke="#6b422e" stroke-width="5"/>
+  <path d="M43 129c0-57 31-74 85-74s87 20 85 74l-19 14-23-13-23 14-24-14-22 13-25-14-19 13Z" fill="url(#cream)" stroke="#6b422e" stroke-width="5" stroke-linejoin="round"/>
+  <ellipse cx="97" cy="101" rx="6" ry="8" fill="#70432d"/><ellipse cx="157" cy="101" rx="6" ry="8" fill="#70432d"/>
+  <path d="m118 116 9-5 10 5" fill="none" stroke="#70432d" stroke-width="4" stroke-linecap="round"/>
+  <path d="M43 170q80 20 169 0M48 181q80 20 157 0" fill="none" stroke="#f0c897" stroke-width="6"/>
+  <circle cx="129" cy="175" r="25" fill="#80412b" stroke="#f0c897" stroke-width="5"/>
+  <g fill="#f6dbad"><ellipse cx="122" cy="167" rx="6" ry="9" transform="rotate(-35 122 167)"/><ellipse cx="137" cy="167" rx="6" ry="9" transform="rotate(35 137 167)"/><ellipse cx="121" cy="182" rx="6" ry="9" transform="rotate(35 121 182)"/><ellipse cx="137" cy="182" rx="6" ry="9" transform="rotate(-35 137 182)"/></g>
+  <path d="m82 199 13 19m73-19-13 19" stroke="#f0c897" stroke-width="3" stroke-linecap="round"/>
+</svg>
