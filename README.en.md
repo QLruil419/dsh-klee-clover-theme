@@ -9,7 +9,7 @@ A Genshin Impact fan theme for DeepSeek Harness, with a Mondstadt sunset, two di
 ## Features
 
 - An actual Mondstadt sunset image hosted on miHoYo's official CDN. The original is intentionally soft-focused. Dark mode dims the same scene; it is not a separate night screenshot.
-- A single classic-outfit Klee standing calmly on the wallpaper, with no jumping or floating props. This is AI-generated unofficial fan art with warm sunset lighting; the sidebar retains the original Blossoming Starlight costume artwork.
+- A single classic-outfit Klee standing calmly on the wallpaper, with no jumping or floating props. This is AI-generated unofficial fan art, repainted with warm sunset backlighting, softer contours, and lower contrast to fit the hazy scene; the sidebar retains the original Blossoming Starlight costume artwork.
 - A dedicated **可莉 · 四叶草冒险** settings tab alongside General and Models.
 - Wallpaper, sidebar, and panel opacity; blur and saturation; optional CSS liquid-glass highlights.
 - Independent character size, opacity, horizontal position, and sidebar bottom clearance. Adjustable Jumpy Dumpty corner mascot.

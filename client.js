@@ -295,8 +295,13 @@ body[${SCOPE}] .klee-wallpaper-character {
   height: var(--klee-character-size);
   opacity: var(--klee-character-opacity);
   background-image: url("${asset.character}");
-  filter: drop-shadow(0 18px 36px rgba(32, 14, 40, .24));
+  filter: saturate(.92) contrast(.94) drop-shadow(0 10px 24px rgba(151, 82, 57, .12));
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 85%, rgba(0,0,0,.72) 94%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 85%, rgba(0,0,0,.72) 94%, transparent 100%);
   transform: translateX(-50%) translateZ(0);
+}
+body[${SCOPE}][data-ds-dark-theme] .klee-wallpaper-character {
+  filter: saturate(.84) contrast(.92) brightness(.90) drop-shadow(0 10px 24px rgba(86, 51, 42, .12));
 }
 body[${SCOPE}] .klee-wallpaper-mascot {
   right: clamp(10px, 2vw, 36px);

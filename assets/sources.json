@@ -10,10 +10,11 @@
     },
     {
       "file": "klee-standing.png",
-      "title": "Klee calm standing portrait — AI-generated unofficial fan art",
+      "title": "Klee calm standing portrait — sunset-matched AI-generated unofficial fan art",
       "source": "Built-in image_gen, 2026-10-02; prompt in docs/klee-standing-prompt.md",
       "reference": "https://webstatic.hoyoverse.com/upload/uploadstatic/contentweb/20200103/2020010311014850622.png",
-      "sha256": "81c2e25f96161ffe27ea762b0b014dc33682d6b2839957ecd54aef44762ed695"
+      "lightingReference": "https://uploadstatic-sea.mihoyo.com/contentweb/20200211/2020021114281985438.jpg",
+      "sha256": "909b6dd9410e2daba73cd21a032c7747f061bf15b15db9db63de39976eaaaf84"
     },
     {
       "file": "klee-blossoming-starlight.png",
