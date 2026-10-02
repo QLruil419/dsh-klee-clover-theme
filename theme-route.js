@@ -31,7 +31,7 @@ const FILES = Object.freeze({
   backgroundLight: 'mondstadt.jpg',
   backgroundDark: 'mondstadt.jpg',
   overlay: 'klee-blossoming-starlight.png',
-  character: 'klee-splash.png',
+  character: 'klee-standing.png',
   mascot: 'jumpy-dumpty.svg',
   icon: 'klee-icon.svg',
   favicon: 'klee-icon.svg',

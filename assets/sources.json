@@ -9,10 +9,11 @@
       "sha256": "ee7306b8dabe7df2636c6de164787ddb75fb71e7fa096d3453190d446f97d848"
     },
     {
-      "file": "klee-splash.png",
-      "title": "UI_Gacha_AvatarImg_Klee",
-      "source": "https://enka.network/ui/UI_Gacha_AvatarImg_Klee.png",
-      "sha256": "cc9b72b7b9e7ad567f9259bb586207dda8a0e3f9e5e05d546cef218b46cf13ed"
+      "file": "klee-standing.png",
+      "title": "Klee calm standing portrait — AI-generated unofficial fan art",
+      "source": "Built-in image_gen, 2026-10-02; prompt in docs/klee-standing-prompt.md",
+      "reference": "https://webstatic.hoyoverse.com/upload/uploadstatic/contentweb/20200103/2020010311014850622.png",
+      "sha256": "81c2e25f96161ffe27ea762b0b014dc33682d6b2839957ecd54aef44762ed695"
     },
     {
       "file": "klee-blossoming-starlight.png",

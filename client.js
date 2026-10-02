@@ -291,7 +291,7 @@ body[${SCOPE}] .klee-wallpaper-character {
   left: var(--klee-character-position);
   bottom: 0;
   z-index: -2;
-  width: calc(var(--klee-character-size) * 2);
+  width: calc(var(--klee-character-size) * .72);
   height: var(--klee-character-size);
   opacity: var(--klee-character-opacity);
   background-image: url("${asset.character}");
@@ -312,7 +312,7 @@ body[${SCOPE}] .klee-wallpaper-mascot {
   body[${SCOPE}] .klee-wallpaper-character {
     left: min(var(--klee-character-position), 58%);
     max-height: 65vh;
-    max-width: 130vh;
+    max-width: 46.8vh;
   }
   body[${SCOPE}] .klee-wallpaper-mascot { right: 6px; max-width: 28vw; max-height: 28vw; }
 }
