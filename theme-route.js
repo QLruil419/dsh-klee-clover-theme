@@ -22,6 +22,7 @@ const NUMBER_RULES = Object.freeze({
   characterOpacity: [0, 100],
   characterSize: [42, 110],
   characterPosition: [35, 85],
+  characterLayoutVersion: [1, 1],
   mascotSize: [96, 480],
   mascotOpacity: [0, 100],
 })

@@ -1,10 +1,23 @@
 # 可莉站姿立绘生成记录
 
-日期：2026-10-02。工具：内置 image_gen；透明背景开启。
+初次生成：2026-10-02；最后编辑：2026-10-03。工具：内置 image_gen；透明背景开启。
 
 输出：`assets/klee-standing.png`，965 × 1630 PNG，保留透明 alpha。
 
 参考图：[官方 CDN 经典红衣可莉人物图](https://webstatic.hoyoverse.com/upload/uploadstatic/contentweb/20200103/2020010311014850622.png)，仅用于服装、人物比例与画风参考，不沿用动作姿态。生成输出为非官方同人图，角色设计权利归原权利人。
+
+## 1.0.3 比例调整编辑提示词
+
+输入 1 为 1.0.2 的夕阳站姿图，输入 2 为经典可莉人物图的原作比例参考；编辑后仍为 965 × 1630 透明 PNG。
+
+```text
+Use case: precise-object-edit
+Asset type: full-body transparent Klee illustration for the CENTER of a Mondstadt sunset desktop wallpaper.
+Image 1: EDIT TARGET, current warm standing Klee, whose oversized round head and baby-like face must be corrected. Image 2: REFERENCE ONLY for canonical costume and original Genshin anime illustration proportions, NOT its action pose.
+Primary request: redraw the standing character from image 1 with noticeably more balanced original-game illustration proportions and less super-deformed/toddler-like styling. Reduce the head size relative to torso by about 20%, reduce the exaggerated eye-to-face ratio moderately, give the face a slightly less round silhouette and a composed small smile, keep nose and mouth delicate. Slightly lengthen the clothed torso and limbs into a coherent approximately 4.5-head-tall figure (hat and feather excluded). Keep Klee recognizable as the same canonical petite child character, with natural child anatomy and original modest costume; do not turn her into an adult or change her identity. The aim is original character-art balance rather than a big-headed toy/chibi.
+Keep: her QUIET STANDING POSE with both feet down and both hands lightly holding backpack straps; red clover beret, feather, blonde twin tails, elf ears, red eyes, classic red clover coat and white trim, brown gloves, backpack and boots. Keep the entire head, feather and both boots visible. Keep the warm golden sunset rim lighting, muted terracotta fabric, cream highlights, softly painted warm contours and hazy rose-brown shadows from image 1. Clear facial features without oversized doll eyes. No jumping or action props.
+Composition: a single full-body character, upright, compact silhouette, centered on a portrait transparent canvas with a little padding above feather and below soles. TRUE transparent alpha background, clean anti-aliased edges. No scenery, ground plate, opaque glow field, checkerboard, text, watermark, other people, floating bombs, explosions or books. Preserve the sunset painterly finish while making proportions distinctly less baby-like.
+```
 
 ## 1.0.1 原始站姿生成提示词
 

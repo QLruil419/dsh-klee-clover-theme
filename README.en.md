@@ -9,7 +9,7 @@ A Genshin Impact fan theme for DeepSeek Harness, with a Mondstadt sunset, two di
 ## Features
 
 - An actual Mondstadt sunset image hosted on miHoYo's official CDN. The original is intentionally soft-focused. Dark mode dims the same scene; it is not a separate night screenshot.
-- A single classic-outfit Klee standing calmly on the wallpaper, with no jumping or floating props. This is AI-generated unofficial fan art, repainted with warm sunset backlighting, softer contours, and lower contrast to fit the hazy scene; the sidebar retains the original Blossoming Starlight costume artwork.
+- A single classic-outfit Klee standing calmly at the center of the main wallpaper, with balanced head/body proportions and subtler facial features. This is AI-generated unofficial fan art with warm sunset lighting; the sidebar retains the original Blossoming Starlight costume artwork.
 - A dedicated **可莉 · 四叶草冒险** settings tab alongside General and Models.
 - Wallpaper, sidebar, and panel opacity; blur and saturation; optional CSS liquid-glass highlights.
 - Independent character size, opacity, horizontal position, and sidebar bottom clearance. Adjustable Jumpy Dumpty corner mascot.
@@ -47,6 +47,8 @@ Settings are stored in `$DSH_HOME/klee-clover-theme.json`, or `~/.dsh/klee-clove
 Changes autosave after approximately 250 ms. Writes are serialized and replaced atomically. Browser storage is a fast/offline fallback. The **保存设置** button requests an immediate save; **已保存** means the host acknowledged it. **仅浏览器已保存** means the host write failed and only browser storage is available. Retry after checking host plugin availability and directory permissions.
 
 Set character or mascot opacity to zero to hide it. Increase sidebar bottom clearance to avoid lower plugin buttons. `vh` sizes are relative to viewport height; sidebar percentage includes the original artwork's transparent margins. Liquid glass uses CSS blur and highlights, not physically simulated refraction.
+
+Character horizontal position is relative to the main area to the right of the sidebar: 50% means centered. It follows sidebar collapse and window resizing. Version 1.0.3 centers old preferences once and saves a layout marker, preserving all other appearance controls; later custom positions are retained.
 
 ## Update / remove
 

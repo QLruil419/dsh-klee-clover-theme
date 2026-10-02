@@ -33,7 +33,7 @@ test('appearance survives a host restart on a different port; routes reject unsa
   })
   try {
     assert.equal((await (await post({ method: 'get' })).json()).value.appearance, null)
-    const expected = { sidebarArtBottom: 246, characterSize: 74, mascotSize: 192, liquidGlass: false }
+    const expected = { sidebarArtBottom: 246, characterSize: 74, characterPosition: 65, characterLayoutVersion: 1, mascotSize: 192, liquidGlass: false }
     assert.equal((await post({ method: 'set', appearance: expected })).status, 200)
     assert.deepEqual(JSON.parse(readFileSync(join(temp, 'klee-clover-theme.json'), 'utf8')).appearance, expected)
     const firstPort = host.url

@@ -7,7 +7,7 @@
 | 文件 | 内容 / 原始资源名 | 来源 |
 | --- | --- | --- |
 | `assets/mondstadt.jpg` | 蒙德城夕照，米哈游角色介绍页背景，1920 × 1080；原图具有柔焦与 Mondstadt 字样 | [官方 CDN 原图](https://uploadstatic-sea.mihoyo.com/contentweb/20200211/2020021114281985438.jpg) |
-| `assets/klee-standing.png` | 单人自然站姿可莉，AI 生成的非官方同人立绘，以经典红衣造型为参考；1.0.2 按蒙德夕阳重绘光照与柔和边缘 | 内置 image_gen，2026-10-02；[完整提示词](docs/klee-standing-prompt.md) |
+| `assets/klee-standing.png` | 单人自然站姿可莉，AI 生成的非官方同人立绘；保留夕阳光照，1.0.3 重新平衡头身比和五官，减少夸张大头与圆脸 | 内置 image_gen，最后编辑 2026-10-03；[完整提示词](docs/klee-standing-prompt.md) |
 | `assets/klee-blossoming-starlight.png` | 琪花星烛服装图 `UI_Costume_KleeCostumeWitch` | [Enka 游戏资源镜像](https://enka.network/ui/UI_Costume_KleeCostumeWitch.png) |
 | `assets/klee-icon.svg`, `assets/clover-frame.svg`, `assets/klee-clover-wordmark.svg` | 为主题编写的四叶草 UI 图形和字标 | 本项目源码绘制 |
 | `assets/jumpy-dumpty.svg` | 蹦蹦炸弹主题的简化矢量同人装饰 | 本项目源码绘制；原作角色设计权利仍属于原权利人 |
@@ -27,6 +27,6 @@ DeepSeek Harness 名称归其相应权利人所有。本主题不是官方产品
 
 ## 草稿说明
 
-1.0.0 使用经典可莉祈愿动作图；1.0.1 根据“单人主体、不要动作立绘”的反馈改为站姿同人图；1.0.2 使用内置图像编辑工具，以蒙德背景为光照参考重绘该站姿图。旧版本的图像可在对应标签中查看。
+1.0.0 使用经典可莉祈愿动作图；1.0.1 改为站姿同人图；1.0.2 按蒙德夕阳重绘光照；1.0.3 以原作人物图为比例参考，再次调整站姿图的头身比与五官。旧版本的图像可在对应标签中查看。
 
 早期田园背景与其他生成草稿未纳入发行包；当前发行只纳入选定的 `klee-standing.png`。背景继续使用原作蒙德城场景，侧栏继续使用原作琪花星烛图。

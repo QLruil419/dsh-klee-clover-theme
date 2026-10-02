@@ -18,7 +18,8 @@ window.__ModuleLoader__.load({
       saturation: 112,
       characterOpacity: 62,
       characterSize: 96,
-      characterPosition: 76,
+      characterPosition: 50,
+      characterLayoutVersion: 1,
       mascotSize: 156,
       mascotOpacity: 92,
       liquidGlass: true,
@@ -34,6 +35,7 @@ window.__ModuleLoader__.load({
     const clamp = (value, min, max) => Math.min(max, Math.max(min, Number(value)))
 
     function normalizeAppearance(input = {}) {
+      const needsCenteredLayout = input?.characterLayoutVersion !== 1
       const value = input && typeof input === 'object' && !Array.isArray(input) ? { ...input } : {}
       for (const [key, fallback] of Object.entries(DEFAULT_APPEARANCE)) {
         if (typeof fallback === 'number' && (typeof value[key] !== 'number' || !Number.isFinite(value[key]))) value[key] = fallback
@@ -50,7 +52,8 @@ window.__ModuleLoader__.load({
         saturation: clamp(value.saturation ?? DEFAULT_APPEARANCE.saturation, 80, 150),
         characterOpacity: clamp(value.characterOpacity ?? DEFAULT_APPEARANCE.characterOpacity, 0, 100),
         characterSize: clamp(value.characterSize ?? DEFAULT_APPEARANCE.characterSize, 42, 110),
-        characterPosition: clamp(value.characterPosition, 35, 85),
+        characterPosition: needsCenteredLayout ? DEFAULT_APPEARANCE.characterPosition : clamp(value.characterPosition, 35, 85),
+        characterLayoutVersion: 1,
         mascotSize: clamp(value.mascotSize ?? DEFAULT_APPEARANCE.mascotSize, 96, 480),
         mascotOpacity: clamp(value.mascotOpacity, 0, 100),
         liquidGlass: value.liquidGlass ?? DEFAULT_APPEARANCE.liquidGlass,
@@ -149,6 +152,7 @@ window.__ModuleLoader__.load({
             if (appearanceRevision !== revisionAtStart) return readAppearance()
             const appearance = writeAppearanceLocally(stored)
             announceAppearance(appearance)
+            if (stored.characterLayoutVersion !== 1) scheduleHostSave(appearance)
             return appearance
           }
           const appearance = readAppearance()
@@ -178,7 +182,7 @@ window.__ModuleLoader__.load({
       body.style.setProperty('--klee-glass-saturation', (appearance.saturation / 100).toFixed(2))
       body.style.setProperty('--klee-character-opacity', (appearance.characterOpacity / 100).toFixed(2))
       body.style.setProperty('--klee-character-size', `${appearance.characterSize}vh`)
-      body.style.setProperty('--klee-character-position', `${appearance.characterPosition}%`)
+      body.style.setProperty('--klee-character-position', (appearance.characterPosition / 100).toFixed(2))
       body.style.setProperty('--klee-mascot-size', `${appearance.mascotSize}px`)
       body.style.setProperty('--klee-mascot-opacity', (appearance.mascotOpacity / 100).toFixed(2))
       body.setAttribute('data-klee-glass', appearance.liquidGlass ? 'liquid' : 'frosted')
@@ -208,7 +212,9 @@ body[${SCOPE}] {
   --klee-glass-saturation: 1.12;
   --klee-character-opacity: .62;
   --klee-character-size: 96vh;
-  --klee-character-position: 76%;
+  --klee-character-position: .5;
+  --klee-stage-left: 0px;
+  --klee-stage-width: 100vw;
   --klee-mascot-size: 156px;
   --klee-mascot-opacity: .92;
   --klee-panel: color-mix(in srgb, var(--klee-ground) var(--klee-panel-fill), transparent);
@@ -288,7 +294,7 @@ body[${SCOPE}] .klee-wallpaper-mascot {
   transition: opacity .18s ease, width .18s ease, height .18s ease;
 }
 body[${SCOPE}] .klee-wallpaper-character {
-  left: var(--klee-character-position);
+  left: calc(var(--klee-stage-left) + var(--klee-stage-width) * var(--klee-character-position));
   bottom: 0;
   z-index: -2;
   width: calc(var(--klee-character-size) * .72);
@@ -315,7 +321,7 @@ body[${SCOPE}] .klee-wallpaper-mascot {
 }
 @media (max-width: 900px) {
   body[${SCOPE}] .klee-wallpaper-character {
-    left: min(var(--klee-character-position), 58%);
+    left: calc(var(--klee-stage-left) + var(--klee-stage-width) * clamp(.35, var(--klee-character-position), .65));
     max-height: 65vh;
     max-width: 46.8vh;
   }
@@ -659,7 +665,7 @@ body[${SCOPE}] .klee-settings-header { display: flex; flex-wrap: wrap; gap: 12px
           React.createElement(RangeRow, { label: '玻璃饱和度', hint: '提高壁纸透过玻璃后的色彩浓度。', value: appearance.saturation, min: 80, max: 150, step: 1, unit: '%', onChange: value => change('saturation', value) }),
           React.createElement(RangeRow, { label: '中央可莉强度', hint: '控制壁纸中央可莉本体的可见程度。', value: appearance.characterOpacity, min: 0, max: 100, step: 1, unit: '%', onChange: value => change('characterOpacity', value) }),
           React.createElement(RangeRow, { label: '中央可莉大小', hint: '按窗口高度缩放可莉本体。', value: appearance.characterSize, min: 42, max: 110, step: 1, unit: 'vh', onChange: value => change('characterSize', value) }),
-          React.createElement(RangeRow, { label: '可莉水平位置', hint: '左右移动壁纸角色，避开正文区域。', value: appearance.characterPosition, min: 35, max: 85, step: 1, unit: '%', onChange: value => change('characterPosition', value) }),
+          React.createElement(RangeRow, { label: '可莉水平位置', hint: '相对主壁纸区域定位，50% 为中央；侧栏收起后自动跟随。', value: appearance.characterPosition, min: 35, max: 85, step: 1, unit: '%', onChange: value => change('characterPosition', value) }),
           React.createElement(RangeRow, { label: '蹦蹦炸弹大小', hint: '单独调整右下角装饰，不影响壁纸。', value: appearance.mascotSize, min: 96, max: 480, step: 4, unit: 'px', onChange: value => change('mascotSize', value) }),
           React.createElement(RangeRow, { label: '蹦蹦炸弹强度', hint: '设为 0 即可隐藏右下角装饰。', value: appearance.mascotOpacity, min: 0, max: 100, step: 1, unit: '%', onChange: value => change('mascotOpacity', value) }),
           React.createElement(ToggleRow, { label: '液态玻璃高光', hint: '加入镜面边缘、内高光和悬停折射感。', checked: appearance.liquidGlass, onChange: value => change('liquidGlass', value) }),
@@ -703,6 +709,38 @@ body[${SCOPE}] .klee-settings-header { display: flex; flex-wrap: wrap; gap: 12px
         const iconLink = document.querySelector('link[rel~="icon"]')
         const originalIcon = iconLink?.getAttribute('href') ?? null
         let cancelled = false
+        let stageFrame = null
+        let stageSidebar = null
+        const sidebarResizeObserver = new ResizeObserver(queueStageUpdate)
+        const stageMutationObserver = new MutationObserver(queueStageUpdate)
+
+        function updateStageBounds() {
+          stageFrame = null
+          if (cancelled) return
+          const sidebarSlot = document.querySelector('[data-slot="sidebar"]')
+          // Harness uses a display:contents slot; measure its visible root instead.
+          const sidebar = sidebarSlot && getComputedStyle(sidebarSlot).display === 'contents'
+            ? sidebarSlot.firstElementChild : sidebarSlot
+          if (sidebar !== stageSidebar) {
+            if (stageSidebar) sidebarResizeObserver.unobserve(stageSidebar)
+            stageSidebar = sidebar
+            if (stageSidebar) sidebarResizeObserver.observe(stageSidebar)
+          }
+          const width = document.documentElement.clientWidth
+          const rect = sidebar?.getBoundingClientRect()
+          // Narrow-screen sidebars overlay the main view rather than reserving space.
+          const left = width > 900 && rect && rect.left <= 1 && rect.right > 0 && rect.width < width * .65
+            ? Math.min(width, Math.max(0, rect.right)) : 0
+          for (const [property, value] of [
+            ['--klee-stage-left', `${left}px`], ['--klee-stage-width', `${width - left}px`],
+          ]) {
+            if (document.body.style.getPropertyValue(property) !== value) document.body.style.setProperty(property, value)
+          }
+        }
+
+        function queueStageUpdate() {
+          if (!cancelled && stageFrame === null) stageFrame = requestAnimationFrame(updateStageBounds)
+        }
 
         fetch(MANIFEST)
           .then(response => {
@@ -718,12 +756,21 @@ body[${SCOPE}] .klee-settings-header { display: flex; flex-wrap: wrap; gap: 12px
             void loadAppearanceFromHost()
             document.body.prepend(wallpaper, wallpaperCharacter, wallpaperMascot)
             document.body.append(clovers)
+            updateStageBounds()
+            stageMutationObserver.observe(document.body, {
+              subtree: true, childList: true, attributes: true, attributeFilter: ['class', 'style', 'hidden'],
+            })
+            window.addEventListener('resize', queueStageUpdate)
             if (iconLink !== null) iconLink.setAttribute('href', asset.favicon)
           })
           .catch(error => console.warn('[Klee Clover] theme not applied:', error))
 
         return () => {
           cancelled = true
+          sidebarResizeObserver.disconnect()
+          stageMutationObserver.disconnect()
+          window.removeEventListener('resize', queueStageUpdate)
+          if (stageFrame !== null) cancelAnimationFrame(stageFrame)
           if (hostSaveTimer !== null) {
             clearTimeout(hostSaveTimer)
             hostSaveTimer = null
@@ -741,7 +788,7 @@ body[${SCOPE}] .klee-settings-header { display: flex; flex-wrap: wrap; gap: 12px
           for (const property of [
             '--klee-wallpaper-opacity', '--klee-wallpaper-blur',
             '--klee-sidebar-top', '--klee-sidebar-mid', '--klee-sidebar-low', '--klee-sidebar-bottom', '--klee-sidebar-art-bottom',
-            '--klee-sidebar-art-size', '--klee-character-position', '--klee-mascot-opacity',
+            '--klee-sidebar-art-size', '--klee-character-position', '--klee-stage-left', '--klee-stage-width', '--klee-mascot-opacity',
             '--klee-panel-fill', '--klee-glass-blur', '--klee-glass-saturation',
             '--klee-character-opacity', '--klee-character-size', '--klee-mascot-size',
           ]) {
